@@ -10,25 +10,6 @@ body{
     font-family: 'minecrafter', sans-serif;
 }
 
-@media (min-width: 1500px) {
-    body {
-        background-size: cover;
-    }
-}
-
-@media (max-width: 870px) {
-    body {
-        background-size: 300%;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        background: url(image/Minecraft_TheGardenAwakens_DotNet_1080x1920.png);
-        background-size: cover;
-    }
-}
-
 .header{
     /*Quelle: 1*/
     background: rgba(255, 255, 255, 0.2);
@@ -40,7 +21,7 @@ body{
     padding: 20px;
     padding-top: 28px;
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 3.5vh;
     width: 90%;
     display: flex;
     justify-self: center;
@@ -54,6 +35,7 @@ body{
 }
 
 .content{
+    justify-self: center;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -61,12 +43,11 @@ body{
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
     padding: 20px;
     margin: 1%;
     width: 90%;
-    justify-self: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
     flex: 1 1 calc(33.333% - 10px);
     /* https://smoothshadows.com/#djEsMSw1LDAuMDgsMjQsMCwwLCMwMzA3MTIsI2YzZjRmNiwjZmZmZmZmLDI%3D */
     box-shadow: 0px 0px 1px rgba(3, 7, 18, 0.02),
@@ -76,15 +57,19 @@ body{
     0px 0px 24px rgba(3, 7, 18, 0.08);
 }
 
-.villagerimg{
-    width: 100px;
-    display: flex;
-    align-items: stretch;
-
-    
+.content span{
+    margin-bottom: 10px;
 }
 
-.armorer, .butcher, .Carto{
+.villagerimg{
+    width: 100px;
+}
+
+.armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith {
+    display: grid;
+    justify-content: center;
+    width: 15%;
+    min-width: 125px;
     margin-top: 10px;
     margin: 10px;
     text-align: center;
@@ -100,5 +85,42 @@ body{
     0px 0px 9px rgba(3, 7, 18, 0.05),
     0px 0px 15px rgba(3, 7, 18, 0.06),
     0px 0px 24px rgba(3, 7, 18, 0.08);
+    transition: 0.5s;
 
+}
+
+@media (min-width: 1500px) {
+    body {
+        background-size: cover;
+    }
+    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith{
+        width: 11%;
+    }
+}
+
+@media (max-width: 870px) {
+    body {
+        background-size: 300%;
+    }
+    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith{
+        width: 15%;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        background: url(image/Minecraft_TheGardenAwakens_DotNet_1080x1920.png);
+        background-size: cover;
+    }
+}
+
+.armorer:hover{
+    justify-self: center;
+    width: 94%;
+    justify-content: flex-start;
+    height: 500px;
+    .villagerimg{
+        width: 200px;
+    }
+    font-size: 5vh;
 }
