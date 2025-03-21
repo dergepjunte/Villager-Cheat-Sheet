@@ -22,6 +22,12 @@ body{
     }
 }
 
+@media (max-width: 768px) {
+    body {
+        background: url(image/Minecraft_TheGardenAwakens_DotNet_1080x1920.png);
+    }
+}
+
 .header{
     /*Quelle: 1*/
     background: rgba(255, 255, 255, 0.2);
