@@ -113,14 +113,3 @@ body{
         background-size: cover;
     }
 }
-
-.armorer:hover{
-    justify-self: center;
-    width: 94%;
-    justify-content: flex-start;
-    height: 500px;
-    .villagerimg{
-        width: 200px;
-    }
-    font-size: 5vh;
-}
