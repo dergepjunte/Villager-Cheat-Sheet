@@ -113,3 +113,9 @@ body{
         background-size: cover;
     }
 }
+
+.link{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
