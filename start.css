@@ -21,7 +21,7 @@ body{
     padding: 20px;
     padding-top: 28px;
     text-align: center;
-    font-size: 3.5vh;
+    font-size: 6vi;
     width: 90%;
     display: flex;
     justify-self: center;
@@ -44,6 +44,7 @@ body{
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     justify-content: space-around;
+    align-content: space-around;
     flex-wrap: wrap;
     padding: 20px;
     margin: 1%;
@@ -93,17 +94,17 @@ body{
     body {
         background-size: cover;
     }
-    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith{
-        width: 11%;
-    }
+}
+
+.link{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 @media (max-width: 870px) {
     body {
         background-size: 300%;
-    }
-    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith{
-        width: 15%;
     }
 }
 
@@ -114,8 +115,3 @@ body{
     }
 }
 
-.link{
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-}

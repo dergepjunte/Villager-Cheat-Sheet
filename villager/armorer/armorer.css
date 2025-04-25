@@ -1,0 +1,78 @@
+@import url('https://fonts.cdnfonts.com/css/minecrafter');
+
+body{
+    background-color: rgb(36, 36, 36);
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.header{
+    text-align: center;
+    font-size: 7vi;
+    font-family: 'minecrafter', sans-serif;
+    width: 100%;
+}
+
+.content{
+    padding: 4vi;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+}
+
+.novice{
+    width: 15%;
+    background: rgba(0, 0, 0, 0.801);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vi;
+    flex-direction: column;
+}
+.NoviceSpan{
+    font-size: 2vi;
+    font-family: 'minecrafter', sans-serif;
+}
+
+.helmet, .leggins, .chestplate, .boots, .coal{
+    padding: 0.2vi;
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    align-items: center;
+    justify-content: space-around;
+    height: 13%;
+    width: 11vi;
+    margin: 2%;
+}
+
+.villagerimg{
+    width: 10vi;
+    margin-right: 3vi;
+}
+
+.itemIMG{
+    width: 2.5vi;
+    image-rendering: pixelated;
+}
+
+.arrowIMG{
+    width: 2vi;
+}
