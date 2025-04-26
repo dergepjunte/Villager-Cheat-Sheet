@@ -28,8 +28,9 @@ body{
     flex-wrap: wrap;
 }
 
-.novice{
+.novice, .apprentice{
     width: 15%;
+    min-width: 136px;
     background: rgba(0, 0, 0, 0.801);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -41,9 +42,10 @@ body{
     align-items: center;
     padding: 1vi;
     flex-direction: column;
+    margin: 1vi;
 }
-.NoviceSpan{
-    font-size: 2vi;
+.NoviceSpan, .ApprenticeSpan{
+    font-size: 1vi;
     font-family: 'minecrafter', sans-serif;
 }
 
@@ -61,18 +63,54 @@ body{
     height: 13%;
     width: 11vi;
     margin: 2%;
+    min-width: 113px;
 }
 
 .villagerimg{
     width: 10vi;
-    margin-right: 3vi;
+    margin-right: 2vi;
+    min-width: 100px;
 }
 
 .itemIMG{
     width: 2.5vi;
     image-rendering: pixelated;
+    min-width: 25px;
 }
 
 .arrowIMG{
     width: 2vi;
+    min-width: 20px;
+}
+
+@media (max-width: 933px) {
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .novice, .apprentice {
+        width: 90%;
+    }
+
+    .NoviceSpan, .ApprenticeSpan {
+        font-size: 5vi;
+    }
+
+    .helmet, .leggins, .chestplate, .boots, .coal {
+        width: 90%;
+        height: auto;
+        font-size: 1.2em;
+    }
+
+    .itemIMG, .arrowIMG {
+        width: 4vi;
+        min-width: 40px;
+    }
+
+    .villagerimg {
+        width: 14vi;
+        min-width: 140px;
+    }
 }
