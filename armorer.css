@@ -49,7 +49,7 @@ body{
     font-family: 'minecrafter', sans-serif;
 }
 
-.helmet, .leggins, .chestplate, .boots, .coal{
+#trade{
     padding: 0.2vi;
     display: flex;
     background: rgba(255, 255, 255, 0.2);
@@ -81,6 +81,7 @@ body{
 .arrowIMG{
     width: 2vi;
     min-width: 20px;
+    image-rendering: pixelated;
 }
 
 @media (max-width: 933px) {
@@ -98,7 +99,7 @@ body{
         font-size: 5vi;
     }
 
-    .helmet, .leggins, .chestplate, .boots, .coal {
+    #trade{
         width: 90%;
         height: auto;
         font-size: 1.2em;
@@ -113,4 +114,8 @@ body{
         width: 14vi;
         min-width: 140px;
     }
+}
+
+.invisible-trade{
+    visibility: hidden;
 }

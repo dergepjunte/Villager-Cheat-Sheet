@@ -102,16 +102,22 @@ body{
     cursor: pointer;
 }
 
-@media (max-width: 870px) {
-    body {
-        background-size: 300%;
-    }
-}
-
-@media (max-width: 768px) {
+@media (max-width: 933px) {
     body {
         background: url(image/Minecraft_TheGardenAwakens_DotNet_1080x1920.png);
         background-size: cover;
+    }
+    .content{
+        flex-direction: column;
+        align-content: center;
+        margin: 5%;
+    }
+    .villagerimg{
+    width: 20vi;
+}
+    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith {
+        justify-self: center;
+        width: 200%;
     }
 }
 
