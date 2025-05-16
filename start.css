@@ -87,7 +87,12 @@ body{
     0px 0px 15px rgba(3, 7, 18, 0.06),
     0px 0px 24px rgba(3, 7, 18, 0.08);
     transition: 0.5s;
+    transform-origin: center;
     font-size: 1vi;
+}
+
+.armorer:hover, .butcher:hover, .Carto:hover, .cleric:hover, .farmer:hover, .fishermen:hover, .fletcher:hover, .leatherworker:hover, .librarian:hover, .mason:hover, .shepherd:hover, .toolsmith:hover, .weaponsmith:hover {
+    transform: scale(1.1);
 }
 
 @media (min-width: 1500px) {
@@ -120,4 +125,3 @@ body{
         width: 200%;
     }
 }
-
