@@ -8,37 +8,63 @@
     <link rel="icon" type="image/png" href="image/icon.png">
 </head>
 <body>
+    <a class="link" href="index.html" >
     <div class="header">
-        <span>Armorer</span> 
+        <span class="hover-text">Armorer</span>
     </div>
+    </a>
+    <script>
+            const elem = document.querySelector('.hover-text');
+    const originalText = elem.textContent;
+    const hoverText = 'Back to Main Page';
+
+    elem.style.transition = 'opacity 0.2s';
+    elem.style.opacity = 1;
+
+    elem.addEventListener('mouseenter', () => {
+      elem.style.opacity = 0;
+      setTimeout(() => {
+        elem.textContent = hoverText;
+        elem.style.opacity = 1;
+      }, 200);
+    });
+
+    elem.addEventListener('mouseleave', () => {
+      elem.style.opacity = 0;
+      setTimeout(() => {
+        elem.textContent = originalText;
+        elem.style.opacity = 1;
+      }, 200);
+    });
+    </script>
     <div class="content">
         <img class="villagerimg" src="image/texture/Villager Armorer.png" alt="">
         <div class="novice" id="state">
             <div class="NoviceSpan" id="stateSpan">
                 <span>Novice</span>
             </div>
-            <div class="helmet" id="trade">
+            <div class="i-helmet" id="trade">
                 <img class="itemIMG" src="image/texture/emerald 5.png" alt="">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
                 <img src="image/texture/iron_helmet.png" alt="" class="itemIMG">
-                    <div class="tooltip">
-                        <div class="tooltip-text">40%</div>
-                    </div>
+                <div class="tooltip">
+                    <span>40%</span>
+                </div>
             </div>
 
-            <div class="chestplate" id="trade">
+            <div class="i-chestplate" id="trade">
                 <img class="itemIMG" src="image/texture/emerald 9.png" alt="">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
                 <img src="image/texture/iron_chestplate.png" alt="" class="itemIMG">
             </div>
 
-            <div class="leggins" id="trade">
+            <div class="i-leggins" id="trade">
                 <img class="itemIMG" src="image/texture/emerald 7.png" alt="">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
                 <img src="image/texture/iron_leggings.png" alt="" class="itemIMG">
             </div>
 
-            <div class="boots" id="trade">
+            <div class="i-boots" id="trade">
                 <img class="itemIMG" src="image/texture/emerald 4.png" alt="">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
                 <img src="image/texture/iron_boots.png" alt="" class="itemIMG">
@@ -66,13 +92,13 @@
                 <img src="image/texture/bell.png" alt="" class="itemIMG">
             </div>
 
-            <div class="leggins" id="trade">
+            <div class="c-leggins" id="trade">
                 <img class="itemIMG" src="image/texture/emerald 3.png" alt="">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
                 <img src="image/texture/chainmail_leggings.png" alt="" class="itemIMG">
             </div>
 
-            <div class="boots" id="trade">
+            <div class="c-boots" id="trade">
                 <img class="itemIMG" src="image/texture/emerald 4.png" alt="">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
                 <img src="image/texture/chainmail_boots.png" alt="" class="itemIMG">
@@ -113,6 +139,53 @@
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
                 <img src="image/texture/shield.png" alt="" id="shield" class="itemIMG">
             </div>
+        </div>
+        <div class="expert" id="state">
+            <div class="ExpertSpan" id="stateSpan">
+                <span>Expert</span>
+            </div>
+
+            <div class="invisible-trade" id="trade"></div>
+            
+            <div class="d-leggins" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 19-33.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/Enchanted_Diamond_Leggins.webp" alt="" class="itemIMG">
+            </div>
+
+            <div class="d-boots" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 13-27.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/Enchanted_Diamond_Boots.webp" alt="" class="itemIMG">
+            </div>
+
+            <div class="invisible-trade" id="trade"></div>
+
+            <div class="invisible-trade" id="trade"></div>
+        </div>
+        <div class="master" id="state">
+            <div class="MasterSpan" id="stateSpan">
+                <span>Master</span>
+            </div>
+            
+            <div class="invisible-trade" id="trade"></div>
+            
+            <div class="d-helmet" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 19-33.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/Enchanted_Diamond_Helmet.webp" alt="" class="itemIMG">
+            </div>
+
+            <div class="d-chestplate" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 13-27.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/Enchanted_Diamond_Boots.webp" alt="" class="itemIMG">
+            </div>
+
+            <div class="invisible-trade" id="trade"></div>
+
+            <div class="invisible-trade" id="trade"></div>
+        </div>
     </div>
 </body>
 </html>

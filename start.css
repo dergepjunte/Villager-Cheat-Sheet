@@ -120,8 +120,8 @@ body{
     .villagerimg{
     width: 20vi;
 }
-    /*.armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith {
+    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith {
         justify-self: center;
         width: 200%;
-    }*/
+    }
 }
