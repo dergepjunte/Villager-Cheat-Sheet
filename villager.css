@@ -1,0 +1,188 @@
+@import url('https://fonts.cdnfonts.com/css/minecrafter');
+
+body{
+    background: url(image/error.png);
+    background-size:cover ;
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    image-rendering: pixelated;
+}
+
+.crafting-recipe{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    margin-right: 94%;
+}
+
+.blast{
+    visibility: hidden;
+    position: absolute;
+    width: 0%;
+    z-index: 100;
+    transition: 0.3s;
+}
+
+.crafting-recipe:hover{
+.blast{
+        width: 500%;
+        visibility: inherit;
+    }
+}
+
+.header{
+    text-align: center;
+    font-size: 7vi;
+    font-family: 'minecrafter', sans-serif;
+    width: 100%;
+}
+
+.content{
+    padding: 4vi;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    width: 90%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    justify-content: space-around;
+    transition: min-width 0.3s ease-in-out; 
+    min-width: 10px;
+    align-self: center;
+}
+
+#state{
+    width: 12%;
+    min-width: 136px;
+    background: rgba(0, 0, 0, 0.801);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vi;
+    flex-direction: column;
+    margin: 1vi;
+}
+
+#stateSpan{
+    font-size: 1vi;
+    font-family: 'minecrafter', sans-serif;
+}
+
+#trade{
+    padding: 0.2vi;
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    align-items: center;
+    justify-content: space-around;
+    height: 13%;
+    width: 9vi;
+    margin: 2%;
+    min-width: 113px;
+}
+
+.villagerimg{
+    width: 10vi;
+    margin-right: 2vi;
+    min-width: 100px;
+}
+
+.itemIMG{
+    width: 2.5vi;
+    image-rendering: pixelated;
+    min-width: 25px;
+}
+
+.arrowIMG{
+    width: 2vi;
+    min-width: 20px;
+    image-rendering: pixelated;
+}
+
+.tooltip{
+    transition:
+        visibility 0.6s ease-in-out, /* Gleiche Dauer wie die Box-Animation */
+        opacity 0.6s ease-in-out,
+        left 0.3s ease-in-out;
+    opacity: 0;
+    position: absolute;
+    left: 35%;
+    top: 10%;
+    padding: 5%;
+}
+
+.i-helmet {
+    position: relative;
+    display: inline-block;
+}
+.i-helmet:hover{
+    .tooltip{
+        opacity: 1;
+    }
+}
+
+
+#shield{
+    width: 3vi;
+}
+
+
+@media (max-width: 1181px) {
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10%;
+    }
+
+    #state{
+        width: 90%;
+    }
+
+    .NoviceSpan, .ApprenticeSpan {
+        font-size: 10vi;
+    }
+
+    #trade{
+        width: 90%;
+        height: auto;
+        font-size: 1.2em;
+    }
+
+    .itemIMG, .arrowIMG {
+        width: 4vi;
+        min-width: 40px;
+    }
+
+    #shield{
+        width: 1%;
+    }
+
+    .villagerimg {
+        width: 14vi;
+        min-width: 140px;
+    }
+}
+
+.invisible-trade{
+    visibility: hidden;
+}
+.link{
+    color: white;
+    text-decoration: none;
+}

@@ -10,6 +10,27 @@ body{
     font-family: 'minecrafter', sans-serif;
 }
 
+.test1{
+    font-size: xxx-large;
+    cursor: pointer;
+    opacity: 0.1;
+    width: 10%;
+    position: absolute;
+    margin-right: 5%;
+}
+
+.test1:hover{
+    opacity: 1;
+    background-color: black;
+    color: white;
+    z-index: 100;
+}
+
+.test1a{
+    width: 100px;
+    height: 100px;
+}
+
 .header{
     /*Quelle: 1*/
     background: rgba(255, 255, 255, 0.2);
@@ -92,7 +113,7 @@ body{
 }
 
 .armorer:hover, .butcher:hover, .Carto:hover, .cleric:hover, .farmer:hover, .fishermen:hover, .fletcher:hover, .leatherworker:hover, .librarian:hover, .mason:hover, .shepherd:hover, .toolsmith:hover, .weaponsmith:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 @media (min-width: 1500px) {
@@ -108,10 +129,10 @@ body{
 }
 
 @media (max-width: 933px) {
-    body {
+    /*body {
         background: url(image/Minecraft_TheGardenAwakens_DotNet_1080x1920.png);
         background-size: cover;
-    }
+    }*/
     .content{
         flex-direction: column;
         align-content: center;
@@ -119,7 +140,7 @@ body{
     }
     .villagerimg{
     width: 20vi;
-}
+    }
     .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith {
         justify-self: center;
         width: 80vi;
