@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCS - Armorer</title>
+    <link rel="stylesheet" href="villager.css">
+    <link rel="stylesheet" href="carto.html">
+    <link rel="icon" type="image/png" href="image/icon.png">
+</head>
+<body>
+    <div class="crafting-recipe">
+        <img src="image/texture/cartography_taple_background.png" alt="" class="blast">
+    </div>
+    <a class="link" href="index.html" >
+    <div class="header">
+        <span class="hover-text">Armorer</span>
+    </div>
+    </a>
+    <script>
+            const elem = document.querySelector('.hover-text');
+    const originalText = elem.textContent;
+    const hoverText = 'Back to Main Page';
+
+    elem.style.transition = 'opacity 0.2s';
+    elem.style.opacity = 1;
+
+    elem.addEventListener('mouseenter', () => {
+      elem.style.opacity = 0;
+      setTimeout(() => {
+        elem.textContent = hoverText;
+        elem.style.opacity = 1;
+      }, 200);
+    });
+
+    elem.addEventListener('mouseleave', () => {
+      elem.style.opacity = 0;
+      setTimeout(() => {
+        elem.textContent = originalText;
+        elem.style.opacity = 1;
+      }, 200);
+    });
+    </script>
+    <div class="content">
+        <img class="villagerimg" src="image/texture/Villager Carto.png" alt="">
+        <div class="novice" id="state">
+            <div class="NoviceSpan" id="stateSpan">
+                <span>Novice</span>
+            </div>
+            <div class="i-helmet" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 5.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/iron_helmet.png" alt="" class="itemIMG">
+                <div class="tooltip">
+                    <span>40%</span>
+                </div>
+            </div>
+
+            <div class="i-chestplate" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 9.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/iron_chestplate.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="i-leggins" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 7.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/iron_leggings.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="i-boots" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 4.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/iron_boots.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="coal" id="trade">
+                <img class="itemIMG" src="image/texture/coal 15.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG">
+            </div>
+        </div>
+        <div class="apprentice" id="state">
+            <div class="ApprenticeSpan" id="stateSpan">
+                <span>Apprentice</span>
+            </div>
+            <div class="iron" id="trade">
+                <img class="itemIMG" src="image/texture/iron 4.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="bell" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 36.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/bell.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="c-leggins" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 3.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/chainmail_leggings.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="c-boots" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 4.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/chainmail_boots.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG">
+            </div>
+        </div>
+        <div class="journeyman" id="state">
+            <div class="JourneymanSpan" id="stateSpan">
+                <span>Journeyman</span>
+            </div>
+            <div class="lava" id="trade">
+                <img class="itemIMG" src="image/texture/lava_bucket.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="diamond" id="trade">
+                <img class="itemIMG" src="image/texture/diamond.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="c-helmet" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/chainmail_helmet.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="c-chestplate" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 4.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/chainmail_chestplate.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="shield" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 5.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/shield.png" alt="" id="shield" class="itemIMG">
+            </div>
+        </div>
+        <div class="expert" id="state">
+            <div class="ExpertSpan" id="stateSpan">
+                <span>Expert</span>
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG">
+            </div>
+            
+            <div class="d-leggins" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 19-33.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/Enchanted_Diamond_Leggins.webp" alt="" class="itemIMG">
+            </div>
+
+            <div class="d-boots" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 13-27.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/Enchanted_Diamond_Boots.webp" alt="" class="itemIMG">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="invisible-trade" id="trade"></div>
+        </div>
+        <div class="master" id="state">
+            <div class="MasterSpan" id="stateSpan">
+                <span>Master</span>
+            </div>
+            
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG">
+            </div>
+            
+            <div class="d-helmet" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 13-27.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/Enchanted_Diamond_Helmet.webp" alt="" class="itemIMG">
+            </div>
+
+            <div class="d-chestplate" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 21-35.png" alt="">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/Enchanted_Diamond_Chestplate.webp" alt="" class="itemIMG">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
