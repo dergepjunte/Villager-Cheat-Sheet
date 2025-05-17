@@ -1,5 +1,11 @@
 body{
-    background: url(image/blast_furnace_\ background.png);
-    background-size: cover;
+    background: url(image/blast_furnace_background.png);
     image-rendering: pixelated;
+    background-size: cover;
+}
+
+@media (max-width: 1181px) {
+    body{
+        background-size: contain;
+    }
 }

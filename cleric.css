@@ -1,0 +1,10 @@
+body{
+    background: url(image/cartogtaphy_table_background_white.png);
+    background-size: cover;
+    image-rendering: pixelated;
+    color: black;
+}
+
+.header{
+    color: black;
+}

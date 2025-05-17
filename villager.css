@@ -2,7 +2,7 @@
 
 body{
     background: url(image/error.png);
-    background-size:cover ;
+    background-size: cover;
     color: white;
     display: flex;
     justify-content: center;
@@ -14,7 +14,8 @@ body{
     width: 100px;
     height: 100px;
     position: absolute;
-    margin-right: 94%;
+    margin-right: 94vi;
+    background-color: black;
 }
 
 .blast{
@@ -29,7 +30,7 @@ body{
     .blast{
             width: 500%;
             visibility: inherit;
-        }
+    }
 }
 
 .header{
@@ -143,6 +144,10 @@ body{
 
 
 @media (max-width: 1181px) {
+    body{
+        background-size: contain;
+    }
+
     .content {
         display: flex;
         flex-direction: column;
@@ -176,6 +181,18 @@ body{
     .villagerimg {
         width: 14vi;
         min-width: 140px;
+    }
+
+    .crafting-recipe:hover{
+        .blast{
+                width: 95vi;
+                visibility: inherit;
+        }
+    }
+
+    .crafting-recipe{
+        position: absolute;
+        margin-right: 90vi;
     }
 }
 
