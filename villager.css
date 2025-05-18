@@ -15,7 +15,7 @@ body{
     height: 100px;
     position: absolute;
     margin-right: 94vi;
-    background-color: black;
+    
 }
 
 .blast{
@@ -102,6 +102,7 @@ body{
     margin-right: 2vi;
     min-width: 100px;
 }
+
 
 .itemIMG{
     width: 2.5vi;

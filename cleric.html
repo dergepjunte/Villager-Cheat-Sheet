@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VCS - Armorer</title>
+    <title>VCS - Cleric</title>
     <link rel="stylesheet" href="villager.css">
     <link rel="stylesheet" href="cleric.css">
     <link rel="icon" type="image/png" href="image/icon.png">
@@ -14,7 +14,7 @@
     </div>
     <a class="link" href="index.html" >
     <div class="header">
-        <span class="hover-text">Cartographer</span>
+        <span class="hover-text">Cleric</span>
     </div>
     </a>
     <script>
@@ -42,38 +42,40 @@
     });
     </script>
     <div class="content">
-        <img class="villagerimg" src="image/texture/Villager Carto.png" alt="">
+        <img class="villagerimg" src="image/texture/Villager Cleric.png" alt="">
         <div class="novice" id="state">
             <div class="NoviceSpan" id="stateSpan">
                 <span>Novice</span>
             </div>
 
             
-            <div class="paper" id="trade">
-                <img class="itemIMG" src="image/texture/paper 24.png" alt="">
+            <div class="rotten_flesh" id="trade">
+                <img class="itemIMG" src="image/texture/rotten flesh 32.png" alt="" title="32 Rotten Flesh">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/emerald.png" alt="" class="itemIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
                 <div class="tooltip">
                     <span>40%</span>
                 </div>
             </div>
 
-            <div class="empty-map" id="trade">
-                <img class="itemIMG" src="image/texture/emerald 7.png" alt="">
+            <div class="redstone" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="" title="1 Emerald">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/map.png" alt="" class="itemIMG">
+                <img src="image/texture/redstone 2.png" alt="" class="itemIMG" title="2 Redstone">
+            </div>
+
+
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
-            </div>
-
-            <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
         </div>
@@ -86,30 +88,30 @@
 
 
 
-            <div class="glass-pane" id="trade">
-                <img class="itemIMG" src="image/texture/glass pane 11.png" alt="">
+            <div class="gold-ingot" id="trade">
+                <img class="itemIMG" src="image/texture/gold 3.png" alt="" title="3 Gold Ingots">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/emerald.png" alt="" class="itemIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
             </div>
 
-            <div class="explorer-map" id="trade">
-                <img class="itemIMG" src="image/texture/emerald 8 compass.png" alt="">
+            <div class="lapis" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="" title="1 Emerald">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/explorer map.png" alt="" class="itemIMG">
+                <img src="image/texture/lapis.png" alt="" class="itemIMG" title="1 Lapis Lazuli">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
 
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
         </div>
         <div class="journeyman" id="state">
@@ -118,30 +120,30 @@
             </div>
 
 
-            <div class="compass" id="trade">
-                <img class="itemIMG" src="image/texture/compass.webp" alt="">
+            <div class="rabbits-foot" id="trade">
+                <img class="itemIMG" src="image/texture/rabbit foot 2.png" alt="" title="2 Rabbit's Feet">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/emerald.png" alt="" class="itemIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
             </div>
 
-            <div class="ocean-explorer-map" id="trade">
-                <img class="itemIMG" src="image/texture/emerald 13 compass.png" alt="">
+            <div class="glowstone" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 4.png" alt="" title="4 Emeralds">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/ocean explorer map.png" alt="" class="itemIMG">
-            </div>
-
-            <div class="trial-explorer-map" id="trade">
-                <img class="itemIMG" src="image/texture/emerald 12 compass.png" alt="">
-                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/trial explorer map.png" alt="" class="itemIMG">
+                <img src="image/texture/glowstone.png" alt="" class="itemIMG" title="Glowstone">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
 
@@ -151,24 +153,26 @@
                 <span>Expert</span>
             </div>
             
-            <div class="item-frame" id="trade">
-                <img class="itemIMG" src="image/texture/emerald 7.png" alt="">
+            <div class="turtle-scute" id="trade">
+                <img class="itemIMG" src="image/texture/turtle scute 4.png" alt="" title="4 Turtle Scutes">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/item frame.png" alt="" class="itemIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
             </div>
 
-            <div class="banner" id="trade">
-                <img class="itemIMG" src="image/texture/emerald 3.png" alt="">
+            <div class="glass-bottle" id="trade">
+                <img class="itemIMG" src="image/texture/glass bottles 9.png" alt="" title="9 Glass Bottles">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/banner.webp" alt="" class="itemIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="ender-pearl" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 5.png" alt="" title="5 Emeralds">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/ender_pearl.png" alt="" class="itemIMG" title="Ender Pearl">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
-            </div>
-
-            <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
             <div class="invisible-trade" id="trade"></div>
@@ -180,28 +184,28 @@
             
             
             
-            <div class="globe-banner-pattern" id="trade">
-                <img class="itemIMG" src="image/texture/emerald 8.png" alt="">
+            <div class="nether-wart" id="trade">
+                <img class="itemIMG" src="image/texture/nether wart 22.png" alt="" title="22 Nether Wart">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/globe banner pattern.png" alt="" class="itemIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
             </div>
 
-            <div class="woodland-explorer-map" id="trade">
-                <img class="itemIMG" src="image/texture/emerald 14 compass.png" alt="">
+            <div class="bottle-enchanting" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 3.png" alt="" title="3 Emeralds">
                 <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
-                <img src="image/texture/woodland explorer map.png" alt="" class="itemIMG">
+                <img src="image/texture/bottle o enchanting.webp" alt="" class="itemIMG" title="Bottle o' Enchanting">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
 
             <div class="invisible-trade" id="trade">
-                <img src="image/texture/blank.png" alt="" class="itemIMG">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
             </div>
         </div>
     </div>

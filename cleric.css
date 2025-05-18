@@ -1,10 +1,5 @@
 body{
-    background: url(image/cartogtaphy_table_background_white.png);
+    background: url(image/brewing_stand_background.png);
     background-size: cover;
     image-rendering: pixelated;
-    color: black;
-}
-
-.header{
-    color: black;
 }

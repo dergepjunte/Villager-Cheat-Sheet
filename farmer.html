@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCS - Farmer</title>
+    <link rel="stylesheet" href="villager.css">
+    <link rel="stylesheet" href="farmer.css">
+    <link rel="icon" type="image/png" href="image/icon.png">
+</head>
+<body>
+    <div class="crafting-recipe">
+        <img src="image/texture/blast_furnace_crafting.png" alt="" class="blast">
+    </div>
+    <a class="link" href="index.html" >
+    <div class="header">
+        <span class="hover-text">Farmer</span>
+    </div>
+    </a>
+    <script>
+            const elem = document.querySelector('.hover-text');
+    const originalText = elem.textContent;
+    const hoverText = 'Back to Main Page';
+
+    elem.style.transition = 'opacity 0.2s';
+    elem.style.opacity = 1;
+
+    elem.addEventListener('mouseenter', () => {
+      elem.style.opacity = 0;
+      setTimeout(() => {
+        elem.textContent = hoverText;
+        elem.style.opacity = 1;
+      }, 200);
+    });
+
+    elem.addEventListener('mouseleave', () => {
+      elem.style.opacity = 0;
+      setTimeout(() => {
+        elem.textContent = originalText;
+        elem.style.opacity = 1;
+      }, 200);
+    });
+    </script>
+    <div class="content">
+        <img class="villagerimg" src="image/texture/Villager Farmer.png" alt="">
+        <div class="novice" id="state">
+            <div class="NoviceSpan" id="stateSpan">
+                <span>Novice</span>
+            </div>
+            <div class="wheat" id="trade">
+                <img class="itemIMG" src="image/texture/wheat 20.png" alt="" title="20 Wheat">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+                <div class="tooltip">
+                    <span>40%</span>
+                </div>
+            </div>
+
+            <div class="potato" id="trade">
+                <img class="itemIMG" src="image/texture/potato 26.png" alt="" title="26 Potatoes">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="carrot" id="trade">
+                <img class="itemIMG" src="image/texture/carrot 22.png" alt="" title="22 Carrots">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="beetroot" id="trade">
+                <img class="itemIMG" src="image/texture/beetroot 15.png" alt="" title="15 Beetroots">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="bread" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="" title="1 Emerald">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/bread 6.png" alt="" class="itemIMG" title="6 Bread">
+            </div>
+        </div>
+        <div class="apprentice" id="state">
+            <div class="ApprenticeSpan" id="stateSpan">
+                <span>Apprentice</span>
+            </div>
+            <div class="pumpkin" id="trade">
+                <img class="itemIMG" src="image/texture/pumpkin 6.png" alt="" title="6 Pumpkins">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="pumpkin-pie" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="" title="1 Emerald">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/pumpkin pie 4.png" alt="" class="itemIMG" title="4 Pumpkin Pies">
+            </div>
+
+            <div class="apple" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="" title="1 Emerald">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/apple 4.png" alt="" class="itemIMG" title="4 Apples">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+        </div>
+        <div class="journeyman" id="state">
+            <div class="JourneymanSpan" id="stateSpan">
+                <span>Journeyman</span>
+            </div>
+            <div class="melon" id="trade">
+                <img class="itemIMG" src="image/texture/melon 4.png" alt="" title="4 Melons">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="cookie" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 3.png" alt="" title="3 Emeralds">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/cookie 18.png" alt="" class="itemIMG" title="18 Cookies">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+
+        </div>
+        <div class="expert" id="state">
+            <div class="ExpertSpan" id="stateSpan">
+                <span>Expert</span>
+            </div>
+
+            
+            <div class="suspicious-stew" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="" title="1 Emerald">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/suspicious_stew.png" alt="" class="itemIMG" title="Suspicious Stew">
+            </div>
+
+            <div class="suspicious-stew" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="" title="1 Emerald">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/suspicious_stew.png" alt="" class="itemIMG" title="Suspicious Stew">
+            </div>
+
+            <div class="cake" id="trade">
+                <img class="itemIMG" src="image/texture/emerald.png" alt="" title="1 Emerald">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/cake.png" alt="" class="itemIMG" title="Cake">
+            </div>
+
+
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade"></div>
+        </div>
+        <div class="master" id="state">
+            <div class="MasterSpan" id="stateSpan">
+                <span>Master</span>
+            </div>
+            
+
+            
+            <div class="golden-carrot" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 3.png" alt="" title="3 Emeralds">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/golden carrot 3.png" alt="" class="itemIMG" title="3 Golden Carrots">
+            </div>
+
+            <div class="glistering-melon" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 4.png" alt="" title="4 Emeralds">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG">
+                <img src="image/texture/glistering melon slice.png" alt="" class="itemIMG" title="Glistering Melon Slice">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

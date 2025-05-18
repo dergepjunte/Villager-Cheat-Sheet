@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCS - Fishermen</title>
+    <link rel="stylesheet" href="villager.css">
+    <link rel="stylesheet" href="fisherman.css">
+    <link rel="icon" type="image/png" href="image/icon.png">
+</head>
+<body>
+    <div class="crafting-recipe">
+        <img src="image/texture/ba.png" alt="" class="blast" title="Blast Furnace">
+    </div>
+    <a class="link" href="index.html" >
+    <div class="header">
+        <span class="hover-text">Fisherman</span>
+    </div>
+    </a>
+    <script>
+            const elem = document.querySelector('.hover-text');
+    const originalText = elem.textContent;
+    const hoverText = 'Back to Main Page';
+
+    elem.style.transition = 'opacity 0.2s';
+    elem.style.opacity = 1;
+
+    elem.addEventListener('mouseenter', () => {
+      elem.style.opacity = 0;
+      setTimeout(() => {
+        elem.textContent = hoverText;
+        elem.style.opacity = 1;
+      }, 200);
+    });
+
+    elem.addEventListener('mouseleave', () => {
+      elem.style.opacity = 0;
+      setTimeout(() => {
+        elem.textContent = originalText;
+        elem.style.opacity = 1;
+      }, 200);
+    });
+    </script>
+    <div class="content">
+        <img class="villagerimg" src="image/texture/Villager Fisherman.png" alt="" title="Fisherman Villager">
+        <div class="novice" id="state">
+            <div class="NoviceSpan" id="stateSpan">
+                <span>Novice</span>
+            </div>
+            <div class="string" id="trade">
+                <img class="itemIMG" src="image/texture/string 20.png" alt="" title="20 String">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+                <div class="tooltip">
+                    <span>40%</span>
+                </div>
+            </div>
+
+            <div class="coal" id="trade">
+                <img class="itemIMG" src="image/texture/coal 10.png" alt="" title="10 Coal">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/iron_chestplate.png" alt="" class="itemIMG" title="Iron Chestplate">
+            </div>
+
+            <div class="bucket-of-cod" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 3.png" alt="" title="3 Emeralds">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/cod_bucket.png" alt="" title="Bucket of Cod" class="itemIMG">
+            </div>
+
+            <div class="cooked-cod" id="trade">
+                <img class="itemIMG" src="image/texture/raw cod 6 emerald.png" alt="" title="6 Raw Cod + 1 Emerald">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/cooked cod.png" alt="" class="itemIMG" title="Cooked Cod">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+
+        </div>
+        <div class="apprentice" id="state">
+            <div class="ApprenticeSpan" id="stateSpan">
+                <span>Apprentice</span>
+            </div>
+            <div class="raw-cod" id="trade">
+                <img class="itemIMG" src="image/texture/cod 15.png" alt="" title="15 Cod">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="campfire" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 2.png" alt="" title="2 Emeralds">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/campfire.webp" alt="" class="itemIMG" title="Campfire">
+            </div>
+
+            <div class="raw-salmon" id="trade">
+                <img class="itemIMG" src="image/texture/raw salmon 6 emerald.png" alt="" title="6 Raw Salmon + 1 Emerald">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/cooked salmon 6.png" alt="" class="itemIMG" title="6 Cooked Salmon">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+        </div>
+        <div class="journeyman" id="state">
+            <div class="JourneymanSpan" id="stateSpan">
+                <span>Journeyman</span>
+            </div>
+            <div class="raw-salmon-13" id="trade">
+                <img class="itemIMG" src="image/texture/salmon 13.png" alt="" title="13 Salmon">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="fishing-rod" id="trade">
+                <img class="itemIMG" src="image/texture/emerald 8 -22.png" alt="" title="8–22 Emeralds">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/enchanted fishing rod.webp" alt="" class="itemIMG" title="Enchanted Fishing Rod">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+
+        </div>
+        <div class="expert" id="state">
+            <div class="ExpertSpan" id="stateSpan">
+                <span>Expert</span>
+            </div>
+
+            
+            <div class="tropical" id="trade">
+                <img class="itemIMG" src="image/texture/tropical 6.png" alt="" title="6 Tropical Fish">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade"></div>
+        </div>
+        <div class="master" id="state">
+            <div class="MasterSpan" id="stateSpan">
+                <span>Master</span>
+            </div>
+            
+            
+            
+            <div class="puffer" id="trade">
+                <img class="itemIMG" src="image/texture/puffer 4.png" alt="" title="4 Pufferfish">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="boat" id="trade">
+                <img class="itemIMG" src="image/texture/boat.webp" alt="" title="Boat">
+                <img src="image/texture/trade_arrow.png" alt="" class="arrowIMG" title="Trade Arrow">
+                <img src="image/texture/emerald.png" alt="" class="itemIMG" title="1 Emerald">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+
+            <div class="invisible-trade" id="trade">
+                <img src="image/texture/blank.png" alt="" class="itemIMG" title="No Trade">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

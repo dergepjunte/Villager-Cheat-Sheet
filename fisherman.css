@@ -1,0 +1,5 @@
+body{
+    background: url(image/barrel_background.png);
+    background-size: cover;
+    image-rendering: pixelated;
+}
