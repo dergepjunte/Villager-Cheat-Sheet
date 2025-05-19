@@ -1,4 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/minecrafter');
+@import url('https://fonts.cdnfonts.com/css/minecraft-3');
 
 body{
     background: url(image/error.png);
@@ -35,7 +36,7 @@ body{
 
 .header{
     text-align: center;
-    font-size: 7vi;
+    font-size: 5em;
     font-family: 'minecrafter', sans-serif;
     width: 100%;
 }
@@ -78,6 +79,26 @@ body{
 #stateSpan{
     font-size: 1vi;
     font-family: 'minecrafter', sans-serif;
+}
+
+.hover-container {
+    position: relative;
+    display: inline-block;
+}
+.subtext {
+    font-size: 3vi;
+    color: #dedede;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    font-family: 'Minecraft', sans-serif;
+}
+.subtext.fade {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
 }
 
 #trade{
@@ -203,4 +224,45 @@ body{
 .link{
     color: white;
     text-decoration: none;
+}
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 600px;
+    font-family: 'Minecraft', sans-serif;
+    color: white;
+    z-index: 1000;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.cookie-banner.hidden {
+    transform: translate(-50%, 150%);
+    opacity: 0;
+}
+.cookie-banner button {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-family: 'Minecraft', sans-serif;
+    color: white;
+}
+.cookie-banner button + button {
+    margin-left: 10px;
+}
+.cookie-banner button:hover {
+    background: rgba(255, 255, 255, 0.5);
 }

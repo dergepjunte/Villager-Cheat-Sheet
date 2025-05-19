@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Einmaliger Begrüßungs-Alert</title>
+  <script>
+    // Prüfen, ob der Nutzer schon einmal hier war
+    if (!localStorage.getItem("besucht")) {
+      alert("Willkommen zum ersten Mal auf unserer Website!");
+      localStorage.setItem("besucht", "true");
+    }
+  </script>
+</head>
+<body>
+  <h1>Hallo und willkommen!</h1>
+  <p>Schön, dass du da bist.</p>
+</body>
+</html>

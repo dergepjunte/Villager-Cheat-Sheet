@@ -14,33 +14,11 @@
     </div>
     <a class="link" href="index.html" >
     <div class="header">
+      <div class="hover-container">
         <span class="hover-text">Fletcher</span>
+      </div>
     </div>
     </a>
-    <script>
-            const elem = document.querySelector('.hover-text');
-    const originalText = elem.textContent;
-    const hoverText = 'Back to Main Page';
-
-    elem.style.transition = 'opacity 0.2s';
-    elem.style.opacity = 1;
-
-    elem.addEventListener('mouseenter', () => {
-      elem.style.opacity = 0;
-      setTimeout(() => {
-        elem.textContent = hoverText;
-        elem.style.opacity = 1;
-      }, 200);
-    });
-
-    elem.addEventListener('mouseleave', () => {
-      elem.style.opacity = 0;
-      setTimeout(() => {
-        elem.textContent = originalText;
-        elem.style.opacity = 1;
-      }, 200);
-    });
-    </script>
     <div class="content">
         <img class="villagerimg" src="image/texture/Villager Fletcher.png" alt="">
         <div class="novice" id="state">
@@ -197,4 +175,12 @@
         </div>
     </div>
 </body>
+<script src="villager.js"></script>
+</div>
+<div id="cookie-banner" class="cookie-banner hidden">
+    <span>Wir nutzen Cookies, um zu erkennen, dass du die Website bereits besucht hast.</span>
+    <button id="accept-cookies">Akzeptieren</button>
+    <button id="decline-cookies">Ablehnen</button>
+</div>
+<script src="start.js"></script>
 </html>

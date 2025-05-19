@@ -6,6 +6,6 @@ body{
 
 @media (max-width: 1181px) {
     body{
-        background-size: contain;
+        background-size: cover;
     }
 }

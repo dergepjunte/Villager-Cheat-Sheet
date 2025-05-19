@@ -14,33 +14,12 @@
     </div>
     <a class="link" href="index.html" >
     <div class="header">
+      <div class="hover-container">
         <span class="hover-text">Armorer</span>
+      </div>
     </div>
     </a>
-    <script>
-            const elem = document.querySelector('.hover-text');
-    const originalText = elem.textContent;
-    const hoverText = 'Back to Main Page';
-
-    elem.style.transition = 'opacity 0.2s';
-    elem.style.opacity = 1;
-
-    elem.addEventListener('mouseenter', () => {
-      elem.style.opacity = 0;
-      setTimeout(() => {
-        elem.textContent = hoverText;
-        elem.style.opacity = 1;
-      }, 200);
-    });
-
-    elem.addEventListener('mouseleave', () => {
-      elem.style.opacity = 0;
-      setTimeout(() => {
-        elem.textContent = originalText;
-        elem.style.opacity = 1;
-      }, 200);
-    });
-    </script>
+    <script src="villager.js"></script>
     <div class="content">
         <img class="villagerimg" src="image/texture/Villager Armorer.png" title="Armorer" alt="">
         <div class="novice" id="state">
@@ -203,5 +182,12 @@
             </div>
         </div>
     </div>
+</div>
+<div id="cookie-banner" class="cookie-banner hidden">
+    <span>Wir nutzen Cookies, um zu erkennen, dass du die Website bereits besucht hast.</span>
+    <button id="accept-cookies">Akzeptieren</button>
+    <button id="decline-cookies">Ablehnen</button>
+</div>
+<script src="start.js"></script>
 </body>
 </html>
