@@ -1,0 +1,11 @@
+body{
+    background: url(image/cauldron_background.png);
+    image-rendering: pixelated;
+    background-size: cover;
+}
+
+@media (max-width: 1181px) {
+    body{
+        background-size: contain;
+    }
+}
