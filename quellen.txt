@@ -1,1 +1,4 @@
 1: css.glass
+2: minecraft.net
+3: chatgpt
+4: minecraft wiki

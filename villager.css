@@ -9,6 +9,10 @@ body{
     justify-content: center;
     flex-wrap: wrap;
     image-rendering: pixelated;
+    font-family: minecraft;
+}
+h1{
+    font-family: 'minecrafter', sans-serif;
 }
 
 .crafting-recipe{
@@ -120,8 +124,10 @@ body{
 
 .villagerimg{
     width: 10vi;
+    height: fit-content;
     margin-right: 2vi;
     min-width: 100px;
+    align-self: center;
 }
 
 

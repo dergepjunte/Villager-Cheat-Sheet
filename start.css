@@ -1,4 +1,3 @@
-
 @import url('https://fonts.cdnfonts.com/css/minecrafter');
 @font-face {
     font-family: 'Minecraft';
@@ -95,7 +94,7 @@ body{
     width: 10vi;
 }
 
-.armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith {
+.armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith, .nitwit, #villager {
     display: grid;
     justify-content: center;
     width: 12vi;
@@ -117,10 +116,43 @@ body{
     0px 0px 24px rgba(3, 7, 18, 0.08);
     transition: 0.5s;
     transform-origin: center;
-    font-size: 1vi;
+    font-size: 1.5vi;
 }
 
-.armorer:hover, .butcher:hover, .Carto:hover, .cleric:hover, .farmer:hover, .fishermen:hover, .fletcher:hover, .leatherworker:hover, .librarian:hover, .mason:hover, .shepherd:hover, .toolsmith:hover, .weaponsmith:hover {
+.armorer:hover, .butcher:hover, .Carto:hover, .cleric:hover, .farmer:hover, .fishermen:hover, .fletcher:hover, .leatherworker:hover, .librarian:hover, .mason:hover, .shepherd:hover, .toolsmith:hover, .weaponsmith:hover, .nitwit:hover, #villager:hover {
+    transform: scale(1.05);
+}
+
+.about-us{
+    display: grid;
+    justify-content: center;
+    width: 12vi;
+    min-width: 125px;
+    margin-top: 10px;
+    margin: 10px;
+    text-align: center;
+    background: rgba(6, 57, 0, 0.802);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2vi;
+    box-shadow: 0px 0px 1px rgba(3, 7, 18, 0.02),
+    0px 0px 4px rgba(3, 7, 18, 0.03),
+    0px 0px 9px rgba(3, 7, 18, 0.05),
+    0px 0px 15px rgba(3, 7, 18, 0.06),
+    0px 0px 24px rgba(3, 7, 18, 0.08);
+    transition: 0.5s;
+    transform-origin: center;
+    font-size: 1.5vi;
+}
+
+.about-us span{
+    text-shadow: 1px 1px 2px black;
+}
+
+.about-us:hover {
     transform: scale(1.05);
 }
 
@@ -149,7 +181,7 @@ body{
     .villagerimg{
     width: 20vi;
     }
-    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith {
+    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher, .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith, .nitwit, #villager, .about-us{
         justify-self: center;
         width: 80vi;
     }
