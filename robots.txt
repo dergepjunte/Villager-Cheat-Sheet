@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /test.html
+Disallow: /test1.html
+
+Sitemap: https://villagercheatsheet.netlify.app/sitemap.xml
