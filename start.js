@@ -138,21 +138,40 @@ document.addEventListener('DOMContentLoaded', () => {
         if (vi >= 0) setActive(vi);
     });
 
-    // ── Swipe on card stack ─────────────────────────────────────────
-    let swipeStartY = 0;
-    let swipeStartX = 0;
+    // ── Scroll navigation on card stack ────────────────────────────
+    let scrollCooldown = false;
+
+    function advanceCard(direction) {
+        if (scrollCooldown) return;
+        setActive(activeIdx + direction);
+        scrollCooldown = true;
+        setTimeout(() => { scrollCooldown = false; }, 120);
+    }
+
+    // Desktop: mouse wheel
+    content.addEventListener('wheel', e => {
+        if (!isStackMode()) return;
+        e.preventDefault();
+        advanceCard(e.deltaY > 0 ? 1 : -1);
+    }, { passive: false });
+
+    // Mobile: touch scroll — advance every ~40px of drag
+    let touchStartY = 0;
+    let touchAccum = 0;
 
     content.addEventListener('touchstart', e => {
-        swipeStartY = e.touches[0].clientY;
-        swipeStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchAccum = 0;
     }, { passive: true });
 
-    content.addEventListener('touchend', e => {
+    content.addEventListener('touchmove', e => {
         if (!isStackMode()) return;
-        const dy = swipeStartY - e.changedTouches[0].clientY;
-        const dx = Math.abs(swipeStartX - e.changedTouches[0].clientX);
-        if (Math.abs(dy) > 45 && dx < 80) {
-            setActive(activeIdx + (dy > 0 ? 1 : -1));
+        const dy = touchStartY - e.touches[0].clientY;
+        touchAccum += dy;
+        touchStartY = e.touches[0].clientY;
+        if (Math.abs(touchAccum) >= 40) {
+            advanceCard(touchAccum > 0 ? 1 : -1);
+            touchAccum = 0;
         }
     }, { passive: true });
 
