@@ -20,7 +20,7 @@ h1{
     height: 100px;
     position: absolute;
     margin-right: 94vi;
-    
+
 }
 
 .blast{
@@ -58,7 +58,7 @@ h1{
     flex-wrap: nowrap;
     justify-content: center;
     justify-content: space-around;
-    transition: min-width 0.3s ease-in-out; 
+    transition: min-width 0.3s ease-in-out;
     min-width: 10px;
     align-self: center;
 }
@@ -81,7 +81,7 @@ h1{
 }
 
 #stateSpan{
-    font-size: 1vi;
+    font-size: clamp(0.7rem, 1vi, 1.2rem);
     font-family: 'minecrafter', sans-serif;
 }
 
@@ -145,7 +145,7 @@ h1{
 
 .tooltip{
     transition:
-        visibility 0.6s ease-in-out, /* Gleiche Dauer wie die Box-Animation */
+        visibility 0.6s ease-in-out,
         opacity 0.6s ease-in-out,
         left 0.3s ease-in-out;
     opacity: 0;
@@ -188,7 +188,7 @@ h1{
     }
 
     .NoviceSpan, .ApprenticeSpan {
-        font-size: 10vi;
+        font-size: clamp(1rem, 10vi, 2.5rem);
     }
 
     #trade{
@@ -224,6 +224,52 @@ h1{
     }
 }
 
+@media (max-width: 600px) {
+    .crafting-recipe {
+        display: none;
+    }
+    .NoviceSpan, .ApprenticeSpan, .JourneymanSpan, .ExpertSpan, .MasterSpan {
+        font-size: clamp(1rem, 8vi, 2rem);
+    }
+    .subtext {
+        font-size: clamp(0.75rem, 3vi, 1rem);
+        white-space: normal;
+    }
+    .header {
+        font-size: clamp(1.5rem, 5vw, 3rem);
+    }
+    #state {
+        width: 94%;
+        padding: 2vi;
+        margin: 1vi 0;
+    }
+    #trade {
+        width: 94%;
+    }
+}
+
+@media (max-width: 480px) {
+    .villagerimg {
+        width: 30vi;
+        min-width: 80px;
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+    .content {
+        padding: 4%;
+        flex-direction: column;
+        align-items: center;
+    }
+    .itemIMG {
+        width: 6vi;
+        min-width: 28px;
+    }
+    .arrowIMG {
+        width: 4vi;
+        min-width: 20px;
+    }
+}
+
 .invisible-trade{
     visibility: hidden;
 }
@@ -233,7 +279,7 @@ h1{
 }
 .cookie-banner {
     position: fixed;
-    bottom: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom));
     left: 50%;
     transform: translate(-50%, 0);
     background: rgba(255, 255, 255, 0.2);

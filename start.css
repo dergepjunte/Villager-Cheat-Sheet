@@ -39,19 +39,24 @@ body{
 }
 
 .header{
+    position: sticky;
+    top: 1%;
+    z-index: 10;
     /*Quelle: 1*/
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 20px;
     padding-top: 28px;
     text-align: center;
-    font-size: 6vi;
+    font-size: clamp(1.4rem, 6vi, 5rem);
     width: 90%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     justify-self: center;
     margin: 1%;
     justify-content: center;
@@ -62,13 +67,85 @@ body{
     0px 0px 24px rgba(3, 7, 18, 0.08);
 }
 
+/* Search input */
+.search-input {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    padding: 7px 18px;
+    color: white;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 0.85rem;
+    width: min(260px, 75%);
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+    touch-action: manipulation;
+}
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+.search-input:focus {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.65);
+}
+.search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.45) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath stroke='white' stroke-width='2' d='M2 2l8 8M10 2l-8 8'/%3E%3C/svg%3E") center/10px no-repeat;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Footer — mirrors header style */
+.footer {
+    position: sticky;
+    bottom: max(1%, env(safe-area-inset-bottom));
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    text-align: center;
+    font-size: clamp(1rem, 3vi, 2.5rem);
+    width: 90%;
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    margin: 1%;
+    font-family: 'minecrafter', sans-serif;
+    transition: background 0.3s;
+    box-shadow: 0px 0px 1px rgba(3, 7, 18, 0.02),
+    0px 0px 4px rgba(3, 7, 18, 0.03),
+    0px 0px 9px rgba(3, 7, 18, 0.05),
+    0px 0px 15px rgba(3, 7, 18, 0.06),
+    0px 0px 24px rgba(3, 7, 18, 0.08);
+}
+.footer:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+.footer span {
+    color: white;
+    margin-bottom: 0;
+}
+
+/* Mobile sidebar — hidden on desktop */
+.mobile-sidebar {
+    display: none;
+}
+
 .content{
     justify-self: center;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     justify-content: space-around;
@@ -78,7 +155,6 @@ body{
     margin: 1%;
     width: 90%;
     flex: 1 1 calc(33.333% - 10px);
-    /* https://smoothshadows.com/#djEsMSw1LDAuMDgsMjQsMCwwLCMwMzA3MTIsI2YzZjRmNiwjZmZmZmZmLDI%3D */
     box-shadow: 0px 0px 1px rgba(3, 7, 18, 0.02),
     0px 0px 4px rgba(3, 7, 18, 0.03),
     0px 0px 9px rgba(3, 7, 18, 0.05),
@@ -105,8 +181,8 @@ body{
     background: rgba(0, 0, 0, 0.8);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 2vi;
     box-shadow: 0px 0px 1px rgba(3, 7, 18, 0.02),
@@ -116,7 +192,7 @@ body{
     0px 0px 24px rgba(3, 7, 18, 0.08);
     transition: 0.5s;
     transform-origin: center;
-    font-size: 1.5vi;
+    font-size: clamp(0.7rem, 1.5vi, 1.2rem);
 }
 
 .armorer:hover, .butcher:hover, .Carto:hover, .cleric:hover, .farmer:hover, .fishermen:hover, .fletcher:hover, .leatherworker:hover, .librarian:hover, .mason:hover, .shepherd:hover, .toolsmith:hover, .weaponsmith:hover, .nitwit:hover, #villager:hover {
@@ -134,8 +210,8 @@ body{
     background: rgba(6, 57, 0, 0.802);
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 2vi;
     box-shadow: 0px 0px 1px rgba(3, 7, 18, 0.02),
@@ -145,7 +221,7 @@ body{
     0px 0px 24px rgba(3, 7, 18, 0.08);
     transition: 0.5s;
     transform-origin: center;
-    font-size: 1.5vi;
+    font-size: clamp(0.7rem, 1.5vi, 1.2rem);
 }
 
 .about-us span{
@@ -169,10 +245,6 @@ body{
 }
 
 @media (max-width: 933px) {
-    /*body {
-        background: url(image/Minecraft_TheGardenAwakens_DotNet_1080x1920.png);
-        background-size: cover;
-    }*/
     .content{
         flex-direction: column;
         align-content: center;
@@ -190,7 +262,7 @@ body{
 /* Cookie-Banner */
 .cookie-banner {
     position: fixed;
-    bottom: 20px;
+    bottom: max(20px, env(safe-area-inset-bottom));
     left: 50%;
     transform: translate(-50%, 0);
     background: rgba(255, 255, 255, 0.2);
@@ -222,10 +294,236 @@ body{
     cursor: pointer;
     font-family: 'Minecraft', sans-serif;
     color: white;
+    touch-action: manipulation;
 }
 .cookie-banner button + button {
     margin-left: 10px;
 }
 .cookie-banner button:hover {
     background: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 12px;
+        padding-top: 16px;
+        margin: 2%;
+        width: 94%;
+    }
+    .armorer, .butcher, .Carto, .cleric, .farmer, .fishermen, .fletcher,
+    .leatherworker, .librarian, .mason, .shepherd, .toolsmith, .weaponsmith,
+    .nitwit, #villager, .about-us {
+        width: 88vi;
+        padding: 3vi;
+    }
+    .villagerimg {
+        width: 28vi;
+    }
+}
+
+/* =============================================
+   Mobile Card Stack (≤768px)
+   ============================================= */
+@media (max-width: 768px) {
+    /* Show sidebar */
+    .mobile-sidebar {
+        display: flex;
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.55);
+        border-radius: 14px 0 0 14px;
+        padding: 10px 5px;
+        z-index: 50;
+        gap: 1px;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-right: none;
+    }
+
+    .sidebar-item {
+        color: rgba(255, 255, 255, 0.5);
+        font-family: 'Minecraft', sans-serif;
+        font-size: 0.47rem;
+        padding: 4px 8px;
+        border-radius: 6px;
+        transition: color 0.12s, background 0.12s, transform 0.12s;
+        cursor: pointer;
+        white-space: nowrap;
+        letter-spacing: 0.04em;
+    }
+
+    .sidebar-item.active {
+        color: white;
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.15) translateX(-3px);
+    }
+
+    .sidebar-nitwit {
+        margin-top: 6px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 6px;
+    }
+
+    /* Stack container */
+    .content.stack-mode {
+        display: block !important;
+        position: relative;
+        height: 70vh;
+        overflow: visible;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        padding: 0 !important;
+        margin: 10px 0 10px 8px !important;
+        width: calc(100vw - 60px) !important;
+    }
+
+    /* Every card link in stack mode */
+    .content.stack-mode .link {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 100%;
+        display: block;
+        transition: transform 0.42s cubic-bezier(0.34, 1.3, 0.64, 1),
+                    opacity 0.38s ease;
+        will-change: transform, opacity;
+    }
+
+    /* Active card — front */
+    .content.stack-mode .link[data-stack="0"] {
+        transform: translateX(-50%) translateY(0px) scale(1) rotate(0deg);
+        opacity: 1;
+        z-index: 9;
+        pointer-events: auto;
+    }
+
+    /* 1st card behind */
+    .content.stack-mode .link[data-stack="1"] {
+        transform: translateX(-50%) translateY(10px) scale(0.95) rotate(1.3deg);
+        opacity: 0.72;
+        z-index: 8;
+        pointer-events: auto;
+    }
+
+    /* 2nd card behind */
+    .content.stack-mode .link[data-stack="2"] {
+        transform: translateX(-50%) translateY(19px) scale(0.90) rotate(-0.9deg);
+        opacity: 0.48;
+        z-index: 7;
+        pointer-events: auto;
+    }
+
+    /* 3rd card behind (barely peeking) */
+    .content.stack-mode .link[data-stack="3"] {
+        transform: translateX(-50%) translateY(27px) scale(0.85) rotate(0.5deg);
+        opacity: 0.26;
+        z-index: 6;
+        pointer-events: none;
+    }
+
+    /* Cards further behind — hidden */
+    .content.stack-mode .link[data-stack="hidden"] {
+        transform: translateX(-50%) translateY(34px) scale(0.80);
+        opacity: 0;
+        z-index: 5;
+        pointer-events: none;
+    }
+
+    /* Cards already passed — fly out above */
+    .content.stack-mode .link[data-stack="prev"] {
+        transform: translateX(-50%) translateY(-115%) scale(0.88) rotate(-2deg);
+        opacity: 0;
+        z-index: 10;
+        pointer-events: none;
+    }
+
+    /* Inner card: full-height vertical layout */
+    .content.stack-mode .armorer,
+    .content.stack-mode .butcher,
+    .content.stack-mode .Carto,
+    .content.stack-mode .cleric,
+    .content.stack-mode .farmer,
+    .content.stack-mode .fishermen,
+    .content.stack-mode .fletcher,
+    .content.stack-mode .leatherworker,
+    .content.stack-mode .librarian,
+    .content.stack-mode .mason,
+    .content.stack-mode .shepherd,
+    .content.stack-mode .toolsmith,
+    .content.stack-mode .weaponsmith,
+    .content.stack-mode .nitwit,
+    .content.stack-mode #villager {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 70vh;
+        width: 100% !important;
+        min-width: unset !important;
+        margin: 0 !important;
+        padding: 24px 20px !important;
+        gap: 20px;
+        transform: none !important;
+        box-sizing: border-box;
+    }
+
+    /* Disable hover-scale on stack cards */
+    .content.stack-mode .armorer:hover,
+    .content.stack-mode .butcher:hover,
+    .content.stack-mode .Carto:hover,
+    .content.stack-mode .cleric:hover,
+    .content.stack-mode .farmer:hover,
+    .content.stack-mode .fishermen:hover,
+    .content.stack-mode .fletcher:hover,
+    .content.stack-mode .leatherworker:hover,
+    .content.stack-mode .librarian:hover,
+    .content.stack-mode .mason:hover,
+    .content.stack-mode .shepherd:hover,
+    .content.stack-mode .toolsmith:hover,
+    .content.stack-mode .weaponsmith:hover,
+    .content.stack-mode .nitwit:hover,
+    .content.stack-mode #villager:hover {
+        transform: none !important;
+    }
+
+    /* Villager image in stack — large, centered */
+    .content.stack-mode .villagerimg {
+        width: clamp(120px, 35vw, 220px) !important;
+        min-width: unset !important;
+        height: auto;
+        object-fit: contain;
+        flex-shrink: 0;
+        image-rendering: pixelated;
+    }
+
+    /* Villager name in stack */
+    .content.stack-mode span {
+        font-size: clamp(1.1rem, 5vw, 1.8rem);
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    /* No-results message */
+    .content.stack-mode[data-empty]::after {
+        content: 'No villager found';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgba(255, 255, 255, 0.55);
+        font-family: 'Minecraft', sans-serif;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
 }
