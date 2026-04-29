@@ -10,13 +10,13 @@
             const img = new Image();
             img.onload  = () => resolve(img);
             img.onerror = () => resolve(null);
-            img.src = BASE + path + '.png';
+            img.src = path.startsWith('http') ? path : BASE + path + '.png';
         });
         return (_cache[path] = p);
     }
 
     // ── Texture definitions ───────────────────────────────────────────
-    // flat: render as 2D sprite | top/left/right/all/side: render as 3D cube
+    // flat: render as 2D sprite | top/left/right/all/side: render as 3D cube | custom: render with a special block model
     const ITEMS = {
         iron_ingot:  { name: 'Iron Ingot',    flat:  'item/iron_ingot' },
         furnace:     { name: 'Furnace',        top:   'block/furnace_top',   left: 'block/furnace_side',  right: 'block/furnace_front' },
@@ -44,11 +44,11 @@
         barrel:            { name: 'Barrel',             top: 'block/barrel_top',              left: 'block/barrel_side',             right: 'block/barrel_side' },
         fletching_table:   { name: 'Fletching Table',   top: 'block/fletching_table_top',     left: 'block/fletching_table_side',    right: 'block/fletching_table_front' },
         cauldron:          { name: 'Cauldron',           top: 'block/cauldron_top',            left: 'block/cauldron_side',           right: 'block/cauldron_side' },
-        lectern:           { name: 'Lectern',            custom: 'lectern' },
+        lectern:           { name: 'Lectern',            flat: 'https://minecraft.wiki/images/Lectern_%28E%29.png?2107d' },
         stonecutter:       { name: 'Stonecutter',        top: 'block/stonecutter_top',         left: 'block/stonecutter_side',        right: 'block/stonecutter_side' },
         loom:              { name: 'Loom',               top: 'block/loom_top',                left: 'block/loom_side',               right: 'block/loom_front' },
         smithing_table:    { name: 'Smithing Table',     top: 'block/smithing_table_top',      left: 'block/smithing_table_side',     right: 'block/smithing_table_front' },
-        grindstone:        { name: 'Grindstone',         top: 'block/grindstone_round',        left: 'block/grindstone_side',         right: 'block/grindstone_pivot' },
+        grindstone:        { name: 'Grindstone',         custom: 'grindstone' },
     };
 
     // ── Recipes ───────────────────────────────────────────────────────
@@ -69,10 +69,14 @@
     };
 
     // ── 3D Renderer ───────────────────────────────────────────────────
-    function drawFace(ctx, img, [tl, tr, br, bl], brightness) {
+    function drawFace(ctx, img, [tl, tr, br, bl], brightness, uv) {
         if (!img) return;
         const W = img.naturalWidth  || 16;
         const H = img.naturalHeight || 16;
+        const tex = uv
+            ? [uv[0] / 16 * W, uv[1] / 16 * H, uv[2] / 16 * W, uv[3] / 16 * H]
+            : [0, 0, W, H];
+        const [u1, v1, u2, v2] = tex;
         ctx.save();
         ctx.beginPath();
         ctx.moveTo(tl.x, tl.y); ctx.lineTo(tr.x, tr.y);
@@ -80,9 +84,10 @@
         ctx.closePath();
         ctx.clip();
         ctx.transform(
-            (tr.x - tl.x) / W, (tr.y - tl.y) / W,
-            (bl.x - tl.x) / H, (bl.y - tl.y) / H,
-            tl.x, tl.y
+            (tr.x - tl.x) / (u2 - u1), (tr.y - tl.y) / (u2 - u1),
+            (bl.x - tl.x) / (v2 - v1), (bl.y - tl.y) / (v2 - v1),
+            tl.x - (tr.x - tl.x) / (u2 - u1) * u1 - (bl.x - tl.x) / (v2 - v1) * v1,
+            tl.y - (tr.y - tl.y) / (u2 - u1) * u1 - (bl.y - tl.y) / (v2 - v1) * v1
         );
         ctx.imageSmoothingEnabled = false;
         ctx.drawImage(img, 0, 0, W, H);
@@ -115,6 +120,131 @@
         drawFace(ctx, leftImg,  [L, M, BC, BL], 0.68);
         drawFace(ctx, rightImg, [M, R, BR, BC], 0.54);
         drawFace(ctx, topImg,   [A, R, M,  L],  1.00);
+    }
+
+    const GRINDSTONE_MODEL = {
+        textures: {
+            leg: 'block/dark_oak_log',
+            pivot: 'block/grindstone_pivot',
+            round: 'block/grindstone_round',
+            side: 'block/grindstone_side',
+        },
+        elements: [
+            {
+                from: [12, 0, 6], to: [14, 7, 10],
+                faces: {
+                    east:  { uv: [10, 16, 6, 9], texture: '#leg' },
+                    south: { uv: [12, 9, 14, 16], texture: '#leg' },
+                }
+            },
+            {
+                from: [2, 0, 6], to: [4, 7, 10],
+                faces: {
+                    south: { uv: [2, 9, 4, 16], texture: '#leg' },
+                }
+            },
+            {
+                from: [12, 7, 5], to: [14, 13, 11],
+                faces: {
+                    east:  { uv: [0, 0, 6, 6], texture: '#pivot' },
+                    south: { uv: [6, 0, 8, 6], texture: '#pivot' },
+                    up:    { uv: [8, 0, 10, 6], texture: '#pivot' },
+                }
+            },
+            {
+                from: [2, 7, 5], to: [4, 13, 11],
+                faces: {
+                    south: { uv: [6, 0, 8, 6], texture: '#pivot' },
+                    up:    { uv: [8, 0, 10, 6], texture: '#pivot' },
+                }
+            },
+            {
+                from: [4, 4, 2], to: [12, 16, 14],
+                faces: {
+                    east:  { uv: [0, 0, 12, 12], texture: '#side' },
+                    south: { uv: [0, 0, 8, 12], texture: '#round' },
+                    up:    { uv: [0, 0, 8, 12], texture: '#round' },
+                }
+            },
+        ],
+    };
+
+    function projectBounds(elements) {
+        const points = [];
+        for (const el of elements) {
+            const [x1, y1, z1] = el.from;
+            const [x2, y2, z2] = el.to;
+            for (const x of [x1, x2]) {
+                for (const y of [y1, y2]) {
+                    for (const z of [z1, z2]) {
+                        points.push({ x: x - z, y: (x + z) * 0.5 - y });
+                    }
+                }
+            }
+        }
+        return points.reduce((box, p) => ({
+            minX: Math.min(box.minX, p.x),
+            maxX: Math.max(box.maxX, p.x),
+            minY: Math.min(box.minY, p.y),
+            maxY: Math.max(box.maxY, p.y),
+        }), { minX: Infinity, maxX: -Infinity, minY: Infinity, maxY: -Infinity });
+    }
+
+    function makeProjector(canvas, elements) {
+        const box = projectBounds(elements);
+        const rawW = box.maxX - box.minX;
+        const rawH = box.maxY - box.minY;
+        const scale = Math.min(canvas.width * 0.82 / rawW, canvas.height * 0.82 / rawH);
+        const midX = (box.minX + box.maxX) / 2;
+        const midY = (box.minY + box.maxY) / 2;
+        return ([x, y, z]) => ({
+            x: canvas.width / 2 + (x - z - midX) * scale,
+            y: canvas.height / 2 + ((x + z) * 0.5 - y - midY) * scale + canvas.height * 0.02,
+        });
+    }
+
+    function faceCorners(face, from, to) {
+        const [x1, y1, z1] = from;
+        const [x2, y2, z2] = to;
+        if (face === 'south') return [[x1, y2, z2], [x2, y2, z2], [x2, y1, z2], [x1, y1, z2]];
+        if (face === 'east')  return [[x2, y2, z2], [x2, y2, z1], [x2, y1, z1], [x2, y1, z2]];
+        if (face === 'up')    return [[x1, y2, z1], [x2, y2, z1], [x2, y2, z2], [x1, y2, z2]];
+        return null;
+    }
+
+    async function renderGrindstone(canvas) {
+        const entries = Object.entries(GRINDSTONE_MODEL.textures);
+        const images = await Promise.all(entries.map(([, path]) => loadImg(path)));
+        const textures = Object.fromEntries(entries.map(([key], index) => [key, images[index]]));
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.imageSmoothingEnabled = false;
+
+        const project = makeProjector(canvas, GRINDSTONE_MODEL.elements);
+        const faces = [];
+        for (const el of GRINDSTONE_MODEL.elements) {
+            for (const [name, face] of Object.entries(el.faces)) {
+                const corners = faceCorners(name, el.from, el.to);
+                if (!corners) continue;
+                const center = corners.reduce((acc, p) => ({
+                    x: acc.x + p[0] / 4,
+                    y: acc.y + p[1] / 4,
+                    z: acc.z + p[2] / 4,
+                }), { x: 0, y: 0, z: 0 });
+                faces.push({
+                    points: corners.map(project),
+                    img: textures[face.texture.slice(1)],
+                    uv: face.uv,
+                    brightness: name === 'up' ? 1 : name === 'south' ? 0.68 : 0.54,
+                    depth: center.x + center.z + center.y * 0.03 + (name === 'up' ? 0.05 : 0),
+                });
+            }
+        }
+
+        faces.sort((a, b) => a.depth - b.depth);
+        for (const face of faces) {
+            drawFace(ctx, face.img, face.points, face.brightness, face.uv);
+        }
     }
 
     async function renderLectern(canvas) {
@@ -163,6 +293,7 @@
     async function renderTex(canvas, def) {
         if (!def || !canvas) return;
         if (def.custom === 'lectern') return renderLectern(canvas);
+        if (def.custom === 'grindstone') return renderGrindstone(canvas);
         if (def.flat) {
             const img = await loadImg(def.flat);
             if (!img) return;
