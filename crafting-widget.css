@@ -1,0 +1,213 @@
+/* Hide old static crafting images */
+.crafting-recipe { display: none !important; }
+
+/* ── Open Button ─────────────────────────────────────────── */
+.cw-btn {
+    position: fixed;
+    bottom: max(24px, env(safe-area-inset-bottom));
+    right: 20px;
+    background: rgba(0, 0, 0, 0.78);
+    border: 2px solid rgba(80, 220, 80, 0.65);
+    border-radius: 14px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    color: #e8ffe8;
+    font-family: 'Minecraft', 'minecrafter', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    z-index: 200;
+    box-shadow:
+        0 0 18px rgba(80, 220, 80, 0.30),
+        inset 0 0 10px rgba(80, 220, 80, 0.08),
+        0 6px 24px rgba(0, 0, 0, 0.55);
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    image-rendering: pixelated;
+}
+.cw-btn:hover {
+    border-color: rgba(120, 255, 120, 1);
+    box-shadow:
+        0 0 30px rgba(80, 255, 80, 0.65),
+        inset 0 0 16px rgba(80, 255, 80, 0.18),
+        0 6px 24px rgba(0, 0, 0, 0.55);
+    transform: translateY(-3px) scale(1.04);
+}
+.cw-btn:active { transform: translateY(0) scale(0.98); }
+.cw-btn canvas { image-rendering: pixelated; display: block; }
+
+/* ── Overlay ─────────────────────────────────────────────── */
+.cw-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease;
+}
+.cw-overlay.cw-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.cw-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* ── Crafting Window ─────────────────────────────────────── */
+.cw-window {
+    position: relative;
+    background: #c6c6c6;
+    padding: 4px;
+    box-shadow:
+        inset -2px -2px 0 #555,
+        inset  2px  2px 0 #fff,
+        0 0 0 2px #000,
+        0 12px 50px rgba(0, 0, 0, 0.85);
+    transform: scale(0.82);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.cw-overlay.cw-open .cw-window { transform: scale(1); }
+
+.cw-inner {
+    border: 2px solid #555;
+    outline: 2px solid #fff;
+    padding: 14px 16px 16px;
+}
+
+.cw-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    font-family: 'Minecraft', 'minecrafter', monospace;
+    font-size: 13px;
+    color: #3f3f3f;
+    gap: 8px;
+}
+.cw-titlebar span { flex: 1; }
+
+.cw-closebtn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 2px;
+    font-family: monospace;
+    transition: color 0.1s;
+}
+.cw-closebtn:hover { color: #bb0000; }
+
+/* ── Crafting Area ───────────────────────────────────────── */
+.cw-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 3×3 grid */
+.cw-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(3, 50px);
+    gap: 2px;
+    background: #373737;
+    padding: 2px;
+    box-shadow: inset 1px 1px 0 #888;
+    flex-shrink: 0;
+}
+
+.cw-slot {
+    width: 50px;
+    height: 50px;
+    background: #8b8b8b;
+    box-shadow: inset 2px 2px 0 #373737, inset -2px -2px 0 #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    image-rendering: pixelated;
+}
+.cw-slot:not(.cw-empty):hover { background: #9e9e9e; }
+.cw-slot:not(.cw-empty):hover::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: rgba(255, 255, 180, 0.28);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Arrow */
+.cw-arrow {
+    width: 48px;
+    height: 26px;
+    flex-shrink: 0;
+    image-rendering: pixelated;
+}
+
+/* Result slot */
+.cw-result {
+    width: 64px;
+    height: 64px;
+    background: #8b8b8b;
+    box-shadow:
+        inset 2px 2px 0 #373737,
+        inset -2px -2px 0 #fff,
+        0 0 0 2px #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+    image-rendering: pixelated;
+}
+.cw-result:hover { background: #9e9e9e; }
+.cw-result:hover::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: rgba(255, 255, 180, 0.28);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Tooltips */
+.cw-slot[data-tip], .cw-result[data-tip] { position: relative; }
+.cw-slot[data-tip]:hover::after,
+.cw-result[data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #100010;
+    border: 1px solid #5500cc;
+    color: #fff;
+    font-family: 'Minecraft', monospace;
+    font-size: 12px;
+    padding: 4px 10px;
+    white-space: nowrap;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow: 2px 2px 0 #2d0066;
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .cw-window { transform: scale(0.72); }
+    .cw-overlay.cw-open .cw-window { transform: scale(0.9); }
+    .cw-btn { right: 12px; bottom: max(16px, env(safe-area-inset-bottom)); }
+}

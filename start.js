@@ -28,75 +28,57 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarItems = Array.from(sidebar.querySelectorAll('.sidebar-item'));
     const searchInput = document.getElementById('villagerSearch');
 
-    let activeIdx = 0;
     let visibleCards = [...allCards];
+    let snapObserver = null;
 
     const isStackMode = () => window.innerWidth <= 768;
 
-    function applyStack() {
-        allCards.forEach(card => {
-            const vi = visibleCards.indexOf(card);
-            if (vi === -1) {
-                card.style.display = 'none';
-                card.removeAttribute('data-stack');
-                return;
-            }
-            card.style.display = '';
-            const diff = vi - activeIdx;
-            if (diff < 0) {
-                card.setAttribute('data-stack', 'prev');
-            } else if (diff <= 3) {
-                card.setAttribute('data-stack', String(diff));
-            } else {
-                card.setAttribute('data-stack', 'hidden');
-            }
-        });
-
-        const activeCard = visibleCards[activeIdx];
+    function updateSidebar(activeCard) {
         sidebarItems.forEach(item => {
             const globalIdx = parseInt(item.dataset.target);
             item.classList.toggle('active', allCards[globalIdx] === activeCard);
             item.style.opacity = visibleCards.includes(allCards[globalIdx]) ? '' : '0.2';
+        });
+    }
+
+    function scrollToCard(card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function initStack() {
+        content.classList.add('stack-mode');
+
+        allCards.forEach(card => {
+            card.style.display = visibleCards.includes(card) ? '' : 'none';
         });
 
         if (visibleCards.length === 0) {
             content.setAttribute('data-empty', '');
         } else {
             content.removeAttribute('data-empty');
+            content.scrollTop = 0;
         }
-    }
 
-    function setActive(newIdx) {
-        activeIdx = Math.max(0, Math.min(newIdx, visibleCards.length - 1));
-        applyStack();
-    }
+        if (snapObserver) snapObserver.disconnect();
+        snapObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                    updateSidebar(entry.target);
+                }
+            });
+        }, { threshold: 0.5, root: content });
 
-    function initStack() {
-        content.classList.add('stack-mode');
-        setActive(activeIdx);
+        visibleCards.forEach(card => snapObserver.observe(card));
+        if (visibleCards[0]) updateSidebar(visibleCards[0]);
     }
 
     function destroyStack() {
         content.classList.remove('stack-mode');
         content.removeAttribute('data-empty');
-        allCards.forEach(card => {
-            card.removeAttribute('data-stack');
-            card.style.display = '';
-        });
-        sidebarItems.forEach(item => { item.style.opacity = ''; });
+        if (snapObserver) { snapObserver.disconnect(); snapObserver = null; }
+        allCards.forEach(card => { card.style.display = ''; });
+        sidebarItems.forEach(item => { item.style.opacity = ''; item.classList.remove('active'); });
     }
-
-    // Tap on non-active card → bring to front, don't navigate
-    allCards.forEach(card => {
-        card.addEventListener('click', e => {
-            if (!isStackMode()) return;
-            if (card.getAttribute('data-stack') !== '0') {
-                e.preventDefault();
-                const vi = visibleCards.indexOf(card);
-                if (vi >= 0) setActive(vi);
-            }
-        });
-    });
 
     // ── Sidebar touch drag ─────────────────────────────────────────
     let lastSidebarTarget = -1;
@@ -108,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const globalIdx = parseInt(item.dataset.target);
                 if (globalIdx !== lastSidebarTarget) {
                     lastSidebarTarget = globalIdx;
-                    const vi = visibleCards.indexOf(allCards[globalIdx]);
-                    if (vi >= 0) {
-                        setActive(vi);
+                    const card = allCards[globalIdx];
+                    if (visibleCards.includes(card)) {
+                        scrollToCard(card);
                         if (navigator.vibrate) navigator.vibrate(8);
                     }
                 }
@@ -133,47 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar.addEventListener('click', e => {
         const item = e.target.closest('.sidebar-item');
         if (!item) return;
-        const globalIdx = parseInt(item.dataset.target);
-        const vi = visibleCards.indexOf(allCards[globalIdx]);
-        if (vi >= 0) setActive(vi);
+        const card = allCards[parseInt(item.dataset.target)];
+        if (visibleCards.includes(card)) scrollToCard(card);
     });
-
-    // ── Scroll navigation on card stack ────────────────────────────
-    let scrollCooldown = false;
-
-    function advanceCard(direction) {
-        if (scrollCooldown) return;
-        setActive(activeIdx + direction);
-        scrollCooldown = true;
-        setTimeout(() => { scrollCooldown = false; }, 120);
-    }
-
-    // Desktop: mouse wheel
-    content.addEventListener('wheel', e => {
-        if (!isStackMode()) return;
-        e.preventDefault();
-        advanceCard(e.deltaY > 0 ? 1 : -1);
-    }, { passive: false });
-
-    // Mobile: touch scroll — advance every ~40px of drag
-    let touchStartY = 0;
-    let touchAccum = 0;
-
-    content.addEventListener('touchstart', e => {
-        touchStartY = e.touches[0].clientY;
-        touchAccum = 0;
-    }, { passive: true });
-
-    content.addEventListener('touchmove', e => {
-        if (!isStackMode()) return;
-        const dy = touchStartY - e.touches[0].clientY;
-        touchAccum += dy;
-        touchStartY = e.touches[0].clientY;
-        if (Math.abs(touchAccum) >= 40) {
-            advanceCard(touchAccum > 0 ? 1 : -1);
-            touchAccum = 0;
-        }
-    }, { passive: true });
 
     // ── Search ──────────────────────────────────────────────────────
     if (searchInput) {
@@ -187,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 : [...allCards];
 
             if (isStackMode()) {
-                setActive(0);
+                initStack();
             } else {
                 allCards.forEach(c => {
                     c.style.display = visibleCards.includes(c) ? '' : 'none';

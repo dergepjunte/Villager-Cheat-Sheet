@@ -101,9 +101,6 @@ body{
 
 /* Footer — mirrors header style */
 .footer {
-    position: sticky;
-    bottom: max(1%, env(safe-area-inset-bottom));
-    z-index: 10;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
     backdrop-filter: blur(10px);
@@ -372,12 +369,17 @@ body{
         padding-top: 6px;
     }
 
-    /* Stack container */
+    /* Stack container — scroll-snap */
     .content.stack-mode {
-        display: block !important;
-        position: relative;
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
         height: 70vh;
-        overflow: visible;
         background: transparent !important;
         border: none !important;
         box-shadow: none !important;
@@ -386,66 +388,25 @@ body{
         padding: 0 !important;
         margin: 10px 0 10px 8px !important;
         width: calc(100vw - 60px) !important;
+        border-radius: 0 !important;
+    }
+
+    .content.stack-mode::-webkit-scrollbar {
+        display: none;
     }
 
     /* Every card link in stack mode */
     .content.stack-mode .link {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        width: 100%;
-        display: block;
-        transition: transform 0.42s cubic-bezier(0.34, 1.3, 0.64, 1),
-                    opacity 0.38s ease;
-        will-change: transform, opacity;
-    }
-
-    /* Active card — front */
-    .content.stack-mode .link[data-stack="0"] {
-        transform: translateX(-50%) translateY(0px) scale(1) rotate(0deg);
-        opacity: 1;
-        z-index: 9;
-        pointer-events: auto;
-    }
-
-    /* 1st card behind */
-    .content.stack-mode .link[data-stack="1"] {
-        transform: translateX(-50%) translateY(10px) scale(0.95) rotate(1.3deg);
-        opacity: 0.72;
-        z-index: 8;
-        pointer-events: auto;
-    }
-
-    /* 2nd card behind */
-    .content.stack-mode .link[data-stack="2"] {
-        transform: translateX(-50%) translateY(19px) scale(0.90) rotate(-0.9deg);
-        opacity: 0.48;
-        z-index: 7;
-        pointer-events: auto;
-    }
-
-    /* 3rd card behind (barely peeking) */
-    .content.stack-mode .link[data-stack="3"] {
-        transform: translateX(-50%) translateY(27px) scale(0.85) rotate(0.5deg);
-        opacity: 0.26;
-        z-index: 6;
-        pointer-events: none;
-    }
-
-    /* Cards further behind — hidden */
-    .content.stack-mode .link[data-stack="hidden"] {
-        transform: translateX(-50%) translateY(34px) scale(0.80);
-        opacity: 0;
-        z-index: 5;
-        pointer-events: none;
-    }
-
-    /* Cards already passed — fly out above */
-    .content.stack-mode .link[data-stack="prev"] {
-        transform: translateX(-50%) translateY(-115%) scale(0.88) rotate(-2deg);
-        opacity: 0;
-        z-index: 10;
-        pointer-events: none;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        height: 70vh;
+        width: 100% !important;
+        display: flex !important;
+        position: relative !important;
+        transform: none !important;
+        opacity: 1 !important;
+        padding-bottom: 14px;
+        box-sizing: border-box;
     }
 
     /* Inner card: full-height vertical layout */
@@ -468,7 +429,7 @@ body{
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 70vh;
+        height: 100%;
         width: 100% !important;
         min-width: unset !important;
         margin: 0 !important;
@@ -476,6 +437,11 @@ body{
         gap: 20px;
         transform: none !important;
         box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.55) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+        border-radius: 20px !important;
+        border: 1px solid rgba(255, 255, 255, 0.18) !important;
     }
 
     /* Disable hover-scale on stack cards */

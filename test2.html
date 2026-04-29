@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Crafting</title>
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/Minecraft-Regular.ttf') format('truetype');
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Minecraft', monospace;
+            image-rendering: pixelated;
+        }
+
+        .window {
+            background: #c6c6c6;
+            padding: 4px;
+            box-shadow:
+                inset -2px -2px 0 #555,
+                inset  2px  2px 0 #fff,
+                0 0 0 2px #000;
+        }
+        .inner {
+            background: #c6c6c6;
+            border: 2px solid #555;
+            outline: 2px solid #fff;
+            padding: 14px 14px 14px;
+        }
+
+        .window-title {
+            font-size: 13px;
+            color: #3f3f3f;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .window-title canvas { image-rendering: pixelated; }
+
+        /* Crafting area: grid + arrow + result */
+        .crafting-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0;
+        }
+
+        /* 3×3 grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 50px);
+            grid-template-rows: repeat(3, 50px);
+            gap: 2px;
+            background: #373737;
+            padding: 2px;
+            box-shadow: inset 1px 1px 0 #888;
+        }
+
+        .slot {
+            width: 50px;
+            height: 50px;
+            background: #8b8b8b;
+            box-shadow:
+                inset 2px 2px 0 #373737,
+                inset -2px -2px 0 #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: default;
+        }
+        .slot:hover { background: #9e9e9e; }
+        .slot:hover::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: rgba(255,255,200,0.3);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .slot canvas, .slot img {
+            width: 38px;
+            height: 38px;
+            image-rendering: pixelated;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Arrow */
+        .arrow-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        /* Result slot */
+        .result-slot {
+            width: 62px;
+            height: 62px;
+            background: #8b8b8b;
+            box-shadow:
+                inset 2px 2px 0 #373737,
+                inset -2px -2px 0 #fff,
+                0 0 0 2px #aaa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: default;
+            flex-shrink: 0;
+        }
+        .result-slot:hover { background: #9e9e9e; }
+        .result-slot:hover::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: rgba(255,255,200,0.3);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .result-slot canvas {
+            width: 48px;
+            height: 48px;
+            image-rendering: pixelated;
+            display: block;
+        }
+
+        /* Tooltip */
+        [data-tip] { position: relative; }
+        [data-tip]:hover::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #100010;
+            border: 1px solid #5000aa;
+            color: #fff;
+            font-size: 12px;
+            padding: 4px 10px;
+            white-space: nowrap;
+            z-index: 999;
+            pointer-events: none;
+            box-shadow: 2px 2px 0 #2d0066;
+        }
+
+        /* Divider & inventory */
+        .divider {
+            margin: 14px 0 10px;
+            border-top: 2px solid #555;
+            border-bottom: 2px solid #fff;
+        }
+        .inv-title { font-size: 13px; color: #3f3f3f; margin-bottom: 8px; }
+        .inv-section { display: flex; flex-direction: column; gap: 2px; }
+        .inv-row { display: flex; gap: 2px; }
+        .inv-slot {
+            width: 36px; height: 36px;
+            background: #8b8b8b;
+            box-shadow: inset 2px 2px 0 #373737, inset -2px -2px 0 #fff;
+        }
+        .inv-slot:hover { background: #9e9e9e; }
+    </style>
+</head>
+<body>
+
+<div class="window">
+<div class="inner">
+
+    <div class="window-title">
+        <canvas id="titleIcon" width="24" height="24"></canvas>
+        Crafting
+    </div>
+
+    <div class="crafting-area">
+
+        <div class="grid">
+            <!-- Row 1: Iron Ingot ×3 -->
+            <div class="slot" data-tip="Iron Ingot" data-render="iron_ingot"></div>
+            <div class="slot" data-tip="Iron Ingot" data-render="iron_ingot"></div>
+            <div class="slot" data-tip="Iron Ingot" data-render="iron_ingot"></div>
+            <!-- Row 2: Iron, Furnace, Iron -->
+            <div class="slot" data-tip="Iron Ingot" data-render="iron_ingot"></div>
+            <div class="slot" data-tip="Furnace" data-render="furnace"></div>
+            <div class="slot" data-tip="Iron Ingot" data-render="iron_ingot"></div>
+            <!-- Row 3: Smooth Stone ×3 -->
+            <div class="slot" data-tip="Smooth Stone" data-render="smooth_stone"></div>
+            <div class="slot" data-tip="Smooth Stone" data-render="smooth_stone"></div>
+            <div class="slot" data-tip="Smooth Stone" data-render="smooth_stone"></div>
+        </div>
+
+        <div class="arrow-wrap">
+            <svg width="48" height="26" viewBox="0 0 48 26" style="image-rendering:pixelated" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="9"  width="34" height="8" fill="#c6c6c6"/>
+                <rect x="0" y="9"  width="34" height="2" fill="#777"/>
+                <rect x="0" y="15" width="34" height="2" fill="#fff"/>
+                <rect x="34" y="3"  width="4" height="20" fill="#c6c6c6"/>
+                <rect x="38" y="7"  width="4" height="12" fill="#c6c6c6"/>
+                <rect x="42" y="11" width="4" height="4"  fill="#c6c6c6"/>
+                <rect x="46" y="12" width="2" height="2"  fill="#c6c6c6"/>
+                <rect x="34" y="3"  width="4" height="2"  fill="#777"/>
+                <rect x="38" y="7"  width="4" height="2"  fill="#777"/>
+                <rect x="42" y="11" width="4" height="2"  fill="#777"/>
+                <rect x="34" y="21" width="4" height="2"  fill="#fff"/>
+                <rect x="38" y="17" width="4" height="2"  fill="#fff"/>
+                <rect x="42" y="13" width="4" height="2"  fill="#fff"/>
+            </svg>
+        </div>
+
+        <div class="result-slot" data-tip="Blast Furnace" data-render="blast_furnace" style="position:relative">
+        </div>
+
+    </div>
+
+    <div class="divider"></div>
+    <div class="inv-title">Inventory</div>
+    <div class="inv-section">
+        <div class="inv-row">
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+        </div>
+        <div class="inv-row">
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+        </div>
+        <div class="inv-row">
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+        </div>
+        <div style="height:6px"></div>
+        <div class="inv-row">
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+            <div class="inv-slot"></div><div class="inv-slot"></div><div class="inv-slot"></div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<script>
+const BASE = 'https://assets.mcasset.cloud/26.1.2/assets/minecraft/textures/';
+
+function loadImg(url) {
+    return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => resolve(null);
+        img.src = url;
+    });
+}
+
+// Draw a parallelogram face of a cube using affine transform
+// verts: [topLeft, topRight, bottomRight, bottomLeft] in screen coords
+function drawFace(ctx, img, [tl, tr, br, bl], brightness) {
+    if (!img) return;
+    const W = img.naturalWidth  || 16;
+    const H = img.naturalHeight || 16;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(tl.x, tl.y);
+    ctx.lineTo(tr.x, tr.y);
+    ctx.lineTo(br.x, br.y);
+    ctx.lineTo(bl.x, bl.y);
+    ctx.closePath();
+    ctx.clip();
+
+    // Affine: maps (0,0)→tl, (W,0)→tr, (0,H)→bl
+    ctx.transform(
+        (tr.x - tl.x) / W,
+        (tr.y - tl.y) / W,
+        (bl.x - tl.x) / H,
+        (bl.y - tl.y) / H,
+        tl.x, tl.y
+    );
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img, 0, 0, W, H);
+
+    // Darken face for lighting
+    if (brightness < 1) {
+        ctx.globalAlpha = 1 - brightness;
+        ctx.fillStyle = '#000';
+        ctx.fillRect(0, 0, W, H);
+    }
+
+    ctx.restore();
+}
+
+function renderBlock(canvas, top, left, right) {
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.imageSmoothingEnabled = false;
+
+    const cw = canvas.width;
+    const ch = canvas.height;
+    const bw = cw * 0.86;
+    const cx = cw / 2;
+
+    // Top-face height and side-face height
+    const th = bw * 0.25;
+    const sh = bw * 0.50;
+    const startY = (ch - (th * 2 + sh)) / 2;
+
+    // Key vertices
+    const A  = { x: cx,          y: startY };             // apex
+    const L  = { x: cx - bw/2,   y: startY + th };        // left
+    const M  = { x: cx,          y: startY + th * 2 };    // center-mid
+    const R  = { x: cx + bw/2,   y: startY + th };        // right
+    const BL = { x: cx - bw/2,   y: startY + th + sh };   // bottom-left
+    const BC = { x: cx,          y: startY + th*2 + sh };  // bottom-center
+    const BR = { x: cx + bw/2,   y: startY + th + sh };   // bottom-right
+
+    // Draw: left face, right face, top face (painter's order)
+    drawFace(ctx, left,  [L,  M,  BC, BL], 0.68);
+    drawFace(ctx, right, [M,  R,  BR, BC], 0.54);
+    drawFace(ctx, top,   [A,  R,  M,  L],  1.00);
+}
+
+function renderItem(canvas, img) {
+    if (!img) return;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+}
+
+async function init() {
+    // Load all textures in parallel
+    const [
+        ironIngot,
+        furnaceTop, furnaceSide, furnaceFront,
+        stoneAll,
+        bfTop, bfSide, bfFront,
+        craftTop, craftSide, craftFront,
+    ] = await Promise.all([
+        loadImg(BASE + 'item/iron_ingot.png'),
+        loadImg(BASE + 'block/furnace_top.png'),
+        loadImg(BASE + 'block/furnace_side.png'),
+        loadImg(BASE + 'block/furnace_front.png'),
+        loadImg(BASE + 'block/smooth_stone.png'),
+        loadImg(BASE + 'block/blast_furnace_top.png'),
+        loadImg(BASE + 'block/blast_furnace_side.png'),
+        loadImg(BASE + 'block/blast_furnace_front.png'),
+        loadImg(BASE + 'block/crafting_table_top.png'),
+        loadImg(BASE + 'block/crafting_table_side.png'),
+        loadImg(BASE + 'block/crafting_table_front.png'),
+    ]);
+
+    const textures = {
+        iron_ingot:   { type: 'item', img: ironIngot },
+        furnace:      { type: 'block', top: furnaceTop,  left: furnaceSide, right: furnaceFront },
+        smooth_stone: { type: 'block', top: stoneAll,    left: stoneAll,    right: stoneAll },
+        blast_furnace:{ type: 'block', top: bfTop,       left: bfSide,      right: bfFront },
+    };
+
+    // Render grid slots
+    document.querySelectorAll('.slot[data-render]').forEach(slot => {
+        const key = slot.dataset.render;
+        const tex = textures[key];
+        if (!tex) return;
+
+        const canvas = document.createElement('canvas');
+        canvas.width  = 38;
+        canvas.height = 38;
+
+        if (tex.type === 'item') {
+            renderItem(canvas, tex.img);
+        } else {
+            renderBlock(canvas, tex.top, tex.left, tex.right);
+        }
+        slot.appendChild(canvas);
+    });
+
+    // Render result slot
+    const resultSlot = document.querySelector('.result-slot[data-render]');
+    if (resultSlot) {
+        const tex = textures[resultSlot.dataset.render];
+        const canvas = document.createElement('canvas');
+        canvas.width  = 48;
+        canvas.height = 48;
+        canvas.style.width  = '48px';
+        canvas.style.height = '48px';
+        canvas.style.imageRendering = 'pixelated';
+        renderBlock(canvas, tex.top, tex.left, tex.right);
+        resultSlot.appendChild(canvas);
+    }
+
+    // Title icon: crafting table mini cube
+    const titleCanvas = document.getElementById('titleIcon');
+    renderBlock(titleCanvas, craftTop, craftSide, craftFront);
+}
+
+init();
+</script>
+</body>
+</html>
